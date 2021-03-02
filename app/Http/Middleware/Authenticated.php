@@ -14,13 +14,10 @@ class Authenticated {
 	 * @return mixed
 	 */
 	public function handle(Request $request, Closure $next) {
-		if (auth()->user()->role == 1) {
-			return $next($request);
-		} else if (auth()->user()->role == 0) {
-			return $next($request);
-		} else if (auth()->user()->role == 2) {
+		if (auth()->user()->role == 0 || auth()->user()->role == 1 || auth()->user()->role == 2) {
 			return $next($request);
 		}
+
 		return redirect('home')->with('error', "You have no proper authentication to access the area!");
 	}
 }

@@ -18,11 +18,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'authenticationValidateAdmin'])->name('admin.route')->middleware('authentic');
+Route::get('admin/home', 'Admins\Backend\DashboardController@superAdmin')->name('admin.route');
 
-Route::get('seller/home', [App\Http\Controllers\HomeController::class, 'authenticationValidateSeller'])->name('seller.route')->middleware('authentic');
+Route::get('seller/home', 'Admins\Seller\DashboardController@seller')->name('seller.route');
 
-Route::get('user/home', [App\Http\Controllers\HomeController::class, 'authenticationValidateUser'])->name('user.route')->middleware('authentic');
+Route::get('user/home', 'Admins\Buyer\DashboardController@buyer')->name('user.route');
