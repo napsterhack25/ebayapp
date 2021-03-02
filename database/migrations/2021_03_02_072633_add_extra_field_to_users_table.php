@@ -14,7 +14,7 @@ class AddExtraFieldToUsersTable extends Migration {
 		Schema::table('users', function (Blueprint $table) {
 			$table->string('first_name', 50);
 			$table->string('last_name', 50)->nullable();
-			$table->integer('contact')->nullable();
+			$table->string('contact', 20)->nullable();
 			$table->tinyInteger('gender');
 			$table->string('user_image', 200)->nullable();
 			$table->longText('address', 200);
